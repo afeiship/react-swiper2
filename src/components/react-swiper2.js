@@ -19,18 +19,18 @@ export default class extends PureComponent{
     disableScroll:PropTypes.bool,
     stopPropagation:PropTypes.bool,
     onChange:PropTypes.func,
-    transitionEnd:PropTypes.func,
+    onTransitionEnd:PropTypes.func,
   };
 
   static defaultProps = {
     startSlide: 0,
     speed: 400,
-    auto: 3000,
+    auto: 0,
     continuous: true,
     disableScroll: false,
     stopPropagation: false,
     onChange: noop,
-    transitionEnd: noop
+    onTransitionEnd: noop
   };
   /*===properties end===*/
 
@@ -43,10 +43,12 @@ export default class extends PureComponent{
 
   componentDidMount() {
     const {root} = this.refs;
-    const {className,...options} = this.props;
-    this.swiper = Swipe(root,objectAssign(options,{
-      callback: this._onChange
-    }) );
+    const {className,onTransitionEnd,...options} = this.props;
+    const swipeOptions = objectAssign( options, {
+      callback: this._onChange,
+      transitionEnd: onTransitionEnd
+    });
+    this.swiper = Swipe(root,swipeOptions);
   }
 
   get dots(){
@@ -59,7 +61,7 @@ export default class extends PureComponent{
     });
   }
 
-  _onChange = (inIndex,inElement) =>{
+  _onChange = (inIndex) =>{
     const {onChange} = this.props;
     this.setState({ activeIndex: inIndex },()=>{
       onChange({
