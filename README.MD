@@ -10,22 +10,24 @@
     startSlide:PropTypes.number,
     speed:PropTypes.number,
     auto:PropTypes.number,
+    dot:PropTypes.bool,
     continuous:PropTypes.bool,
     disableScroll:PropTypes.bool,
     stopPropagation:PropTypes.bool,
     onChange:PropTypes.func,
-    transitionEnd:PropTypes.func,
+    onTransitionEnd:PropTypes.func,
   };
 
   static defaultProps = {
     startSlide: 0,
     speed: 400,
-    auto: 3000,
+    auto: 0,
+    dot: true,
     continuous: true,
     disableScroll: false,
     stopPropagation: false,
     onChange: noop,
-    transitionEnd: noop
+    onTransitionEnd: noop
   };
   
 ```
