@@ -81,7 +81,6 @@
     "npm": ">= 3.0.0"
   },
   "dependencies": {
-    "Swipe": "github:thebird/Swipe",
     "classnames": "^2.2.5",
     "noop": "github:afeiship/noop",
     "object-assign": "^4.1.1",

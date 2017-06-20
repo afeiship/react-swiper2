@@ -3,7 +3,7 @@ import './style.scss';
 import React,{PureComponent} from 'react';
 
 import PropTypes from 'prop-types';
-import Swipe from './swipe';
+import Swiper from 'swiper';
 import classNames from 'classnames';
 import noop from 'noop';
 import objectAssign from 'object-assign';
@@ -15,6 +15,7 @@ export default class extends PureComponent{
     startSlide:PropTypes.number,
     speed:PropTypes.number,
     auto:PropTypes.number,
+    dot:PropTypes.bool,
     continuous:PropTypes.bool,
     disableScroll:PropTypes.bool,
     stopPropagation:PropTypes.bool,
@@ -26,6 +27,7 @@ export default class extends PureComponent{
     startSlide: 0,
     speed: 400,
     auto: 0,
+    dot: true,
     continuous: true,
     disableScroll: false,
     stopPropagation: false,
@@ -44,11 +46,11 @@ export default class extends PureComponent{
   componentDidMount() {
     const {root} = this.refs;
     const {className,onTransitionEnd,...options} = this.props;
-    const swipeOptions = objectAssign( options, {
+    const swiperOptions = objectAssign( options, {
       callback: this._onChange,
       transitionEnd: onTransitionEnd
     });
-    this.swiper = Swipe(root,swipeOptions);
+    this.swiper = Swiper(root,swiperOptions);
   }
 
   get dots(){
@@ -73,11 +75,11 @@ export default class extends PureComponent{
   };
 
   render(){
-    const {className,children,...props} = this.props;
+    const {className,children,dot,...props} = this.props;
     return (
       <section ref="root" className={classNames('react-swiper2',className)}>
         <div className="react-swiper2-wrapper">{children}</div>
-        <div className="react-swiper2-dots">{this.dots}</div>
+        {dot && <div className="react-swiper2-dots">{this.dots}</div>}
       </section>
     );
   }
