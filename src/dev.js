@@ -30,7 +30,6 @@ class App extends React.Component{
 
   _change = e => {
     const {value} = e.target;
-    console.log(value);
     this.setState({activeIndex:value});
   };
 
@@ -45,7 +44,7 @@ class App extends React.Component{
           {
             this.state.items1.map((item,index)=>{
               return (
-                <div key={index} data-lazy={this.state.activeIndex!==index}><ReactLazyimg onLoad={this._onload} effect="fade" lazy={this.state.activeIndex!==index} url={item} /></div>
+                <div className="bg-loading" key={index}><ReactLazyimg effect="fade" lazy={this.state.activeIndex!==index} url={item} /></div>
               );
             })
           }
