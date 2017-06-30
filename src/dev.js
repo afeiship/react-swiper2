@@ -1,6 +1,8 @@
 import './dev.scss';
 
 import ReactSwiper2 from './main';
+import ReactLazyimg from 'react-lazyimg'
+import loadingImg from './assets/loading.gif';
 
 /*===example start===*/
 
@@ -9,6 +11,7 @@ import ReactSwiper2 from './main';
 
 class App extends React.Component{
   state = {
+    activeIndex:0,
     items1:[
       require('./assets/1_s.jpg'),
       require('./assets/2_s.jpg'),
@@ -24,14 +27,25 @@ class App extends React.Component{
     window.rc = this.refs.rc;
   }
 
+
+  _change = e => {
+    const {value} = e.target;
+    console.log(value);
+    this.setState({activeIndex:value});
+  };
+
+  _onload = e => {
+    console.log('onload..');
+  };
+
   render(){
     return (
       <div className="hello-react-swiper2">
-        <ReactSwiper2 refs='rc'>
+        <ReactSwiper2 refs='rc' onChange={this._change}>
           {
             this.state.items1.map((item,index)=>{
               return (
-                <div key={index} ><img src={item} alt=""/></div>
+                <div key={index} data-lazy={this.state.activeIndex!==index}><ReactLazyimg onLoad={this._onload} effect="fade" lazy={this.state.activeIndex!==index} url={item} /></div>
               );
             })
           }
