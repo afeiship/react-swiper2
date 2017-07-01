@@ -40,11 +40,40 @@ class App extends React.Component{
   render(){
     return (
       <div className="hello-react-swiper2">
+        {/*<h4>Normal without lazyimg</h4>
+        <ReactSwiper2 refs='rc' onChange={this._change}>
+          {
+            this.state.items1.map((item,index)=>{
+              return (
+                <div className="bg-loading" key={index}><ReactLazyimg effect="fade" url={item} /></div>
+              );
+            })
+          }
+        </ReactSwiper2>
+        <div className="blank-50" />*/}
+
+        <h4>Lazy with fade mode</h4>
         <ReactSwiper2 refs='rc' onChange={this._change}>
           {
             this.state.items1.map((item,index)=>{
               return (
                 <div className="bg-loading" key={index}><ReactLazyimg effect="fade" lazy={this.state.activeIndex!==index} url={item} /></div>
+              );
+            })
+          }
+        </ReactSwiper2>
+
+        <div className="blank-50" />
+        <h4>Lazy with placeholder</h4>
+        <ReactSwiper2 refs='rc' onChange={this._change}>
+          {
+            this.state.items1.map((item,index)=>{
+              return (
+                <div className="bg-loading" key={index}>
+                  <ReactLazyimg effect="replace"
+                  lazy={this.state.activeIndex!==index}
+                  placeholder={loadingImg}
+                  url={item} /></div>
               );
             })
           }

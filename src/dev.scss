@@ -36,7 +36,26 @@ ul,li{list-style: none;}
   }
 
   .bg-loading{
-    background: #FFF;
+    background: #eee;
+    width:375px;
+    height:250px;
+    position: relative;
+    >.react-lazyimg{
+      position: absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%,-50%);
+    }
+  }
+
+  .react-lazyimg{
+    &[data-loaded=false]{
+      width:50px;
+    }
+  }
+
+  .blank-50{
+    height:50px;
   }
 }
 

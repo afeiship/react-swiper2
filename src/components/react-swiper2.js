@@ -67,9 +67,7 @@ export default class extends PureComponent{
     const {onChange} = this.props;
     this.setState({ activeIndex: inIndex },()=>{
       onChange({
-        target:{
-          value: inIndex
-        }
+        target:{ value: inIndex }
       });
     });
   };
