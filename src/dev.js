@@ -16,7 +16,11 @@ class App extends React.Component{
       require('./assets/1_s.jpg'),
       require('./assets/2_s.jpg'),
       require('./assets/3_s.jpg'),
+    ],
+    items2:[
       require('./assets/4_s.jpg'),
+      require('./assets/5_s.jpg'),
+      require('./assets/6_s.jpg')
     ]
   };
 
@@ -40,17 +44,18 @@ class App extends React.Component{
   render(){
     return (
       <div className="hello-react-swiper2">
-        {/*<h4>Normal without lazyimg</h4>
+        <h2>DEMO with regular 4G</h2>
+        <h4>Normal without lazyimg</h4>
         <ReactSwiper2 refs='rc' onChange={this._change}>
           {
-            this.state.items1.map((item,index)=>{
+            this.state.items2.map((item,index)=>{
               return (
                 <div className="bg-loading" key={index}><ReactLazyimg effect="fade" url={item} /></div>
               );
             })
           }
         </ReactSwiper2>
-        <div className="blank-50" />*/}
+        <div className="blank-50" />
 
         <h4>Lazy with fade mode</h4>
         <ReactSwiper2 refs='rc' onChange={this._change}>
