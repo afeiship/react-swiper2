@@ -24,7 +24,7 @@
     z-index:2;
     text-align: center;
     >span{
-      color:#FFF;
+      color:rgba(#fff,0.2);
       margin:0 5px;
       display: inline-block;
       width:10px;
@@ -32,7 +32,7 @@
       border-radius: 10px;
       background: #FFF;
       &[data-active=true]{
-        background: #F60;
+        background: #FFF;
       }
     }
   }
