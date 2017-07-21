@@ -24,13 +24,12 @@
     z-index:2;
     text-align: center;
     >span{
-      color:rgba(#fff,0.2);
       margin:0 5px;
       display: inline-block;
       width:10px;
       height:10px;
       border-radius: 10px;
-      background: #FFF;
+      background: rgba(#FFF,0.2);
       &[data-active=true]{
         background: #FFF;
       }
