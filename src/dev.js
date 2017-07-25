@@ -15,6 +15,7 @@ class App extends React.Component{
     items1:[
       require('./assets/1_s.jpg'),
       require('./assets/2_s.jpg'),
+      require('./assets/3_s.jpg'),
     ],
     items2:[
       require('./assets/4_s.jpg'),

@@ -53,6 +53,12 @@ export default class extends PureComponent{
     this.swiper = Swiper(root,swiperOptions);
   }
 
+  componentWillUnmount() {
+    this.swiper.kill();
+    this.swiper = null;
+  }
+
+
   get dots(){
     const {children} = this.props;
     const {activeIndex} = this.state;
