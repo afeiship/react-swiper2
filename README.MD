@@ -9,6 +9,7 @@
     className:PropTypes.string,
     startSlide:PropTypes.number,
     speed:PropTypes.number,
+    touchAngle:PropTypes.number,
     auto:PropTypes.number,
     dot:PropTypes.bool,
     continuous:PropTypes.bool,
@@ -21,6 +22,7 @@
   static defaultProps = {
     startSlide: 0,
     speed: 400,
+    touchAngle: 45,
     auto: 0,
     dot: true,
     continuous: true,
