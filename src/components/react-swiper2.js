@@ -11,30 +11,30 @@ import objectAssign from 'object-assign';
 export default class extends PureComponent{
   /*===properties start===*/
   static propTypes = {
-    className:PropTypes.string,
-    startSlide:PropTypes.number,
-    speed:PropTypes.number,
-    touchAngle:PropTypes.number,
-    auto:PropTypes.number,
-    dot:PropTypes.bool,
-    continuous:PropTypes.bool,
-    disableScroll:PropTypes.bool,
-    stopPropagation:PropTypes.bool,
-    onChange:PropTypes.func,
-    onTransitionEnd:PropTypes.func,
+    className : PropTypes.string,
+    startSlide : PropTypes.number,
+    speed : PropTypes.number,
+    touchAngle : PropTypes.number,
+    auto : PropTypes.number,
+    dot : PropTypes.bool,
+    continuous : PropTypes.bool,
+    disableScroll : PropTypes.bool,
+    stopPropagation : PropTypes.bool,
+    onChange : PropTypes.func,
+    onTransitionEnd : PropTypes.func,
   };
 
   static defaultProps = {
-    startSlide: 0,
-    speed: 400,
-    touchAngle: 45,
-    auto: 0,
-    dot: true,
-    continuous: true,
-    disableScroll: false,
-    stopPropagation: false,
-    onChange: noop,
-    onTransitionEnd: noop
+    startSlide : 0,
+    speed : 400,
+    touchAngle : 45,
+    auto : 0,
+    dot : true,
+    continuous : true,
+    disableScroll : false,
+    stopPropagation : false,
+    onChange : noop,
+    onTransitionEnd : noop
   };
   /*===properties end===*/
 
@@ -46,8 +46,8 @@ export default class extends PureComponent{
   }
 
   componentDidMount() {
-    const {root} = this.refs;
-    const {className,onTransitionEnd,...options} = this.props;
+    const { root } = this.refs;
+    const { className, onTransitionEnd,...options } = this.props;
     const swiperOptions = objectAssign( options, {
       callback: this._onChange,
       transitionEnd: onTransitionEnd
@@ -62,8 +62,8 @@ export default class extends PureComponent{
 
 
   get dots(){
-    const {children} = this.props;
-    const {value} = this.state;
+    const { children } = this.props;
+    const { value } = this.state;
     let arr = new Array(children.length).join().split(',');
     arr = Object.keys(arr);
     return arr.map(i=>{
@@ -72,7 +72,7 @@ export default class extends PureComponent{
   }
 
   _onChange = (inIndex) =>{
-    const {onChange} = this.props;
+    const { onChange } = this.props;
     this.setState({ value: inIndex },()=>{
       onChange({
         target:{ value: inIndex }
