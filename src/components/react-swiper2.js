@@ -41,7 +41,7 @@ export default class extends PureComponent{
   constructor(props){
     super(props);
     this.state = {
-      activeIndex: props.startSlide
+      value: props.startSlide
     };
   }
 
@@ -63,17 +63,17 @@ export default class extends PureComponent{
 
   get dots(){
     const {children} = this.props;
-    const {activeIndex} = this.state;
+    const {value} = this.state;
     let arr = new Array(children.length).join().split(',');
     arr = Object.keys(arr);
     return arr.map(i=>{
-      return <span key={i} data-active={this.state.activeIndex == i} />
+      return <span key={i} data-active={this.state.value == i} />
     });
   }
 
   _onChange = (inIndex) =>{
     const {onChange} = this.props;
-    this.setState({ activeIndex: inIndex },()=>{
+    this.setState({ value: inIndex },()=>{
       onChange({
         target:{ value: inIndex }
       });
