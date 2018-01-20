@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import noop from 'noop';
 import objectAssign from 'object-assign';
 
+
 export default class extends Component{
   /*===properties start===*/
   static propTypes = {
@@ -40,10 +41,10 @@ export default class extends Component{
 
   get dots(){
     const { children, value } = this.props;
-    const length = children.length;
-    let arr = new Array(length).join().split(',');
-    arr = Object.keys(arr);
-    return arr.map(i=>{
+    const items = Object.keys(
+      new Array(children.length).join().split(',')
+    );
+    return items.map(i=>{
       return <span key={i} data-active={value == i} />
     });
   }

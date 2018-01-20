@@ -13,7 +13,7 @@ BACKUP_USAGE
 ```
 
 ## todos:
-+ [ ] optimize: dots/getBoundary method
++ [x] optimize: dots/getBoundary method
 
 ## resource:
 + http://www.cnblogs.com/Kummy/p/4966937.html
