@@ -44,15 +44,8 @@ export default class extends Component{
     let arr = new Array(length).join().split(',');
     arr = Object.keys(arr);
     return arr.map(i=>{
-      const index = this.geBoundary(i);
-      return <span key={i} data-active={value == index} />
+      return <span key={i} data-active={value == i} />
     });
-  }
-
-  geBoundary(inValue) {
-    const { children } = this.props;
-    const length = children.length;
-    return inValue >= length ? ( inValue - length ) : inValue;
   }
 
   componentDidMount() {
@@ -72,7 +65,7 @@ export default class extends Component{
 
   _onChange = (inIndex) =>{
     const { onChange } = this.props;
-    onChange({ target:{ value:  this.geBoundary(inIndex) } });
+    onChange({ target:{ value:  inIndex } });
   };
 
   render(){
