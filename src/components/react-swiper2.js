@@ -1,6 +1,6 @@
 import './style.scss';
 
-import React,{PureComponent} from 'react';
+import React,{ Component } from 'react';
 
 import PropTypes from 'prop-types';
 import Swiper from 'swiper';
@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import noop from 'noop';
 import objectAssign from 'object-assign';
 
-export default class extends PureComponent{
+export default class extends Component{
   /*===properties start===*/
   static propTypes = {
     className : PropTypes.string,
@@ -38,16 +38,18 @@ export default class extends PureComponent{
   };
   /*===properties end===*/
 
-  constructor(props){
-    super(props);
-    this.state = {
-      value: props.startSlide
-    };
+  get dots(){
+    const { children, value } = this.props;
+    let arr = new Array(children.length).join().split(',');
+    arr = Object.keys(arr);
+    return arr.map(i=>{
+      return <span key={i} data-active={value == i} />
+    });
   }
 
   componentDidMount() {
     const { root } = this.refs;
-    const { className, onTransitionEnd,...options } = this.props;
+    const { className, onTransitionEnd, ...options } = this.props;
     const swiperOptions = objectAssign( options, {
       callback: this._onChange,
       transitionEnd: onTransitionEnd
@@ -60,28 +62,13 @@ export default class extends PureComponent{
     this.swiper = null;
   }
 
-
-  get dots(){
-    const { children } = this.props;
-    const { value } = this.state;
-    let arr = new Array(children.length).join().split(',');
-    arr = Object.keys(arr);
-    return arr.map(i=>{
-      return <span key={i} data-active={this.state.value == i} />
-    });
-  }
-
   _onChange = (inIndex) =>{
     const { onChange } = this.props;
-    this.setState({ value: inIndex },()=>{
-      onChange({
-        target:{ value: inIndex }
-      });
-    });
+    onChange({ target:{ value: inIndex } });
   };
 
   render(){
-    const {className,children,dot,...props} = this.props;
+    const { className, children, dot, ...props } = this.props;
     return (
       <section ref="root" className={classNames('react-swiper2',className)}>
         <div className="react-swiper2-wrapper">{children}</div>

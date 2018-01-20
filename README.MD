@@ -42,7 +42,9 @@
 
 class App extends React.Component{
   state = {
-    activeIndex:0,
+    activeIndex1:0,
+    activeIndex2:0,
+    activeIndex3:0,
     items1:[
       require('./assets/1_s.jpg'),
       require('./assets/2_s.jpg'),
@@ -65,7 +67,19 @@ class App extends React.Component{
 
   _change = e => {
     const {value} = e.target;
-    this.setState({activeIndex:value});
+    this.setState({activeIndex1:value});
+  };
+
+
+  _change2 = e => {
+    const {value} = e.target;
+    this.setState({activeIndex2:value});
+  };
+
+
+  _change3 = e => {
+    const {value} = e.target;
+    this.setState({activeIndex3:value});
   };
 
   _onload = e => {
@@ -77,7 +91,7 @@ class App extends React.Component{
       <div className="hello-react-swiper2">
         <h2>DEMO with regular 4G</h2>
         <h4>Normal without lazyimg</h4>
-        <ReactSwiper2 touchAngle={5} refs='rc' auto={3000} onChange={this._change}>
+        <ReactSwiper2 touchAngle={5} refs='rc' auto={3000} value={this.state.activeIndex1} onChange={this._change}>
           {
             this.state.items2.map((item,index)=>{
               return (
@@ -89,11 +103,11 @@ class App extends React.Component{
         <div className="blank-50" />
 
         <h4>Lazy with fade mode</h4>
-        <ReactSwiper2 refs='rc' onChange={this._change}>
+        <ReactSwiper2 refs='rc' onChange={this._change2} value={this.state.activeIndex2}>
           {
             this.state.items1.map((item,index)=>{
               return (
-                <div className="bg-loading" key={index}><ReactLazyimg effect="fade" lazy={this.state.activeIndex!==index} url={item} /></div>
+                <div className="bg-loading" key={index}><ReactLazyimg effect="fade" lazy={this.state.activeIndex2!==index} url={item} /></div>
               );
             })
           }
@@ -101,13 +115,13 @@ class App extends React.Component{
 
         <div className="blank-50" />
         <h4>Lazy with placeholder</h4>
-        <ReactSwiper2 refs='rc' onChange={this._change}>
+        <ReactSwiper2 refs='rc' onChange={this._change3} value={this.state.activeIndex3}>
           {
             this.state.items1.map((item,index)=>{
               return (
                 <div className="bg-loading" key={index}>
                   <ReactLazyimg effect="replace"
-                  lazy={this.state.activeIndex!==index}
+                  lazy={this.state.activeIndex3!==index}
                   placeholder={loadingImg}
                   url={item} /></div>
               );
