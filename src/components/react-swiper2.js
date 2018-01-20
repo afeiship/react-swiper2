@@ -40,11 +40,19 @@ export default class extends Component{
 
   get dots(){
     const { children, value } = this.props;
-    let arr = new Array(children.length).join().split(',');
+    const length = children.length;
+    let arr = new Array(length).join().split(',');
     arr = Object.keys(arr);
     return arr.map(i=>{
-      return <span key={i} data-active={value == i} />
+      const index = this.geBoundary(i);
+      return <span key={i} data-active={value == index} />
     });
+  }
+
+  geBoundary(inValue) {
+    const { children } = this.props;
+    const length = children.length;
+    return inValue >= length ? ( inValue - length ) : inValue;
   }
 
   componentDidMount() {
@@ -64,15 +72,15 @@ export default class extends Component{
 
   _onChange = (inIndex) =>{
     const { onChange } = this.props;
-    onChange({ target:{ value: inIndex } });
+    onChange({ target:{ value:  this.geBoundary(inIndex) } });
   };
 
   render(){
     const { className, children, dot, ...props } = this.props;
     return (
-      <section ref="root" className={classNames('react-swiper2',className)}>
+      <section ref="root" className={ classNames('react-swiper2',className) }>
         <div className="react-swiper2-wrapper">{children}</div>
-        {dot && <div className="react-swiper2-dots">{this.dots}</div>}
+        { dot && <div className="react-swiper2-dots">{ this.dots }</div> }
       </section>
     );
   }
