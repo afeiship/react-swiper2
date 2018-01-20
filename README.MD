@@ -6,30 +6,30 @@
 ```javascript
 
   static propTypes = {
-    className:PropTypes.string,
-    startSlide:PropTypes.number,
-    speed:PropTypes.number,
-    touchAngle:PropTypes.number,
-    auto:PropTypes.number,
-    dot:PropTypes.bool,
-    continuous:PropTypes.bool,
-    disableScroll:PropTypes.bool,
-    stopPropagation:PropTypes.bool,
-    onChange:PropTypes.func,
-    onTransitionEnd:PropTypes.func,
+    className : PropTypes.string,
+    startSlide : PropTypes.number,
+    speed : PropTypes.number,
+    touchAngle : PropTypes.number,
+    auto : PropTypes.number,
+    dot : PropTypes.bool,
+    continuous : PropTypes.bool,
+    disableScroll : PropTypes.bool,
+    stopPropagation : PropTypes.bool,
+    onChange : PropTypes.func,
+    onTransitionEnd : PropTypes.func,
   };
 
   static defaultProps = {
-    startSlide: 0,
-    speed: 400,
-    touchAngle: 45,
-    auto: 0,
-    dot: true,
-    continuous: true,
-    disableScroll: false,
-    stopPropagation: false,
-    onChange: noop,
-    onTransitionEnd: noop
+    startSlide : 0,
+    speed : 400,
+    touchAngle : 45,
+    auto : 0,
+    dot : true,
+    continuous : true,
+    disableScroll : false,
+    stopPropagation : false,
+    onChange : noop,
+    onTransitionEnd : noop
   };
   
 ```
@@ -77,7 +77,7 @@ class App extends React.Component{
       <div className="hello-react-swiper2">
         <h2>DEMO with regular 4G</h2>
         <h4>Normal without lazyimg</h4>
-        <ReactSwiper2 touchAngle={5} refs='rc' onChange={this._change}>
+        <ReactSwiper2 touchAngle={5} refs='rc' auto={3000} onChange={this._change}>
           {
             this.state.items2.map((item,index)=>{
               return (
