@@ -59,7 +59,7 @@ class App extends React.Component{
       <div className="hello-react-swiper2">
         <h2>DEMO with regular 4G</h2>
         <h4>Normal without lazyimg</h4>
-        <ReactSwiper2 touchAngle={5} refs='rc' value={this.state.activeIndex1} onChange={this._change}>
+        <ReactSwiper2 auto={2000} touchAngle={5} refs='rc' value={this.state.activeIndex1} onChange={this._change}>
           {
             this.state.items1.map((item,index)=>{
               return (
