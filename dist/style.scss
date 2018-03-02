@@ -1,0 +1,38 @@
+.react-swiper2{
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+
+  &-wrapper{
+    overflow: hidden;
+    position: relative;
+    >*{
+      float:left;
+      width:100%;
+      position: relative;
+    }
+  }
+
+
+  &-dots{
+    width:100%;
+    left:50%;
+    transform: translate3d(-50%,0,0);
+    -webkit-transform: translate3d(-50%,0,0);
+    position: absolute;
+    bottom:10px;
+    z-index:2;
+    text-align: center;
+    >span{
+      margin:0 5px;
+      display: inline-block;
+      width:10px;
+      height:10px;
+      border-radius: 10px;
+      background: rgba(#FFF,0.2);
+      &[data-active=true]{
+        background: #fff;
+      }
+    }
+  }
+}

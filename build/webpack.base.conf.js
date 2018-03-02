@@ -9,11 +9,13 @@ var env = process.env.NODE_ENV;
 var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
 var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
 var useCssSourceMap = cssSourceMapDev || cssSourceMapProd;
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var externals = process.env.NODE_ENV === 'production' ? {
   react: 'react',
   classnames: 'classnames',
   'react-dom': 'react-dom',
   'noop':'noop',
+  'next-range':'next-range',
   'swiper':'swiper',
   'object-assign':'object-assign',
   'prop-types':'prop-types',
@@ -40,6 +42,12 @@ module.exports = {
     }
   },
   plugins:[
+    new CopyWebpackPlugin([
+      {
+        from:'./src/components/style.scss',
+        to:'./style.scss',
+      }
+    ]),
     new webpack.ProvidePlugin({
         'React': 'react',
         'ReactDOM': 'react-dom'

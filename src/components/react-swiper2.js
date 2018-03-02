@@ -1,5 +1,3 @@
-import './style.scss';
-
 import React,{ Component } from 'react';
 
 import PropTypes from 'prop-types';
@@ -7,13 +5,14 @@ import Swiper from 'swiper';
 import classNames from 'classnames';
 import noop from 'noop';
 import objectAssign from 'object-assign';
+import NxRange from 'next-range';
 
 
 export default class extends Component{
   /*===properties start===*/
   static propTypes = {
     className : PropTypes.string,
-    startSlide : PropTypes.number,
+    value : PropTypes.number,
     speed : PropTypes.number,
     touchAngle : PropTypes.number,
     auto : PropTypes.number,
@@ -26,7 +25,7 @@ export default class extends Component{
   };
 
   static defaultProps = {
-    startSlide : 0,
+    value : 0,
     speed : 400,
     touchAngle : 45,
     auto : 0,
@@ -39,11 +38,17 @@ export default class extends Component{
   };
   /*===properties end===*/
 
+  constructor(inProps){
+    super(inProps);
+    this.state = {
+      value: inProps.value
+    };
+  }
+
   get dots(){
-    const { children, value } = this.props;
-    const items = Object.keys(
-      new Array(children.length).join().split(',')
-    );
+    const { children } = this.props;
+    const { value } = this.state;
+    const items = NxRange.integer( 0, children.length );
     return items.map(i=>{
       return <span key={i} data-active={value == i} />
     });
@@ -52,11 +57,20 @@ export default class extends Component{
   componentDidMount() {
     const { root } = this.refs;
     const { className, onTransitionEnd, ...options } = this.props;
+    const { value } = this.state;
     const swiperOptions = objectAssign( options, {
       callback: this._onChange,
-      transitionEnd: onTransitionEnd
+      transitionEnd: onTransitionEnd,
+      startSlide: value
     });
     this.swiper = Swiper(root,swiperOptions);
+  }
+
+  componentWillReceiveProps(inProps){
+    const { value } = inProps;
+    if( value !== this.state.value ){
+      this.setState({ value });
+    }
   }
 
   componentWillUnmount() {
@@ -64,9 +78,12 @@ export default class extends Component{
     this.swiper = null;
   }
 
-  _onChange = (inIndex) =>{
+  _onChange = (value) =>{
     const { onChange } = this.props;
-    onChange({ target:{ value:  inIndex } });
+    const target = { value };
+    this.setState(target,()=>{
+      onChange({ target });
+    });
   };
 
   render(){
