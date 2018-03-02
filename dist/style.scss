@@ -1,4 +1,10 @@
+$react-swiper2-options:(
+  dot-color: #fff
+)!default;
+
 .react-swiper2{
+  $dot-color: map-get($map: $react-swiper2-options, $key: dot-color);
+
   overflow: hidden;
   visibility: hidden;
   position: relative;
@@ -31,7 +37,7 @@
       border-radius: 10px;
       background: rgba(#FFF,0.2);
       &[data-active=true]{
-        background: #fff;
+        background: $dot-color;
       }
     }
   }
