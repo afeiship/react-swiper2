@@ -58,5 +58,18 @@ ul,li{list-style: none;}
   .blank-50{
     height:50px;
   }
+
+
+  .demo-with-extra{
+    b{
+      position: absolute;
+      right:10px;
+      top:10px;
+      background: #f60;
+      padding:10px;
+      border-radius: 10px;
+      color: #fff;
+    }
+  }
 }
 

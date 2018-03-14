@@ -88,7 +88,7 @@ export default class extends Component{
   };
 
   render(){
-    const { className, children, dot, ...props } = this.props;
+    const { className, children, dot, extra,...props } = this.props;
     return (
       <section ref="root" className={ classNames('react-swiper2',className) }>
         <div className="react-swiper2-wrapper">{children}</div>
