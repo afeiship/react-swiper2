@@ -22,6 +22,7 @@ export default class extends Component{
     stopPropagation : PropTypes.bool,
     onChange : PropTypes.func,
     onTransitionEnd : PropTypes.func,
+    extra : PropTypes.element,
   };
 
   static defaultProps = {
@@ -92,6 +93,7 @@ export default class extends Component{
       <section ref="root" className={ classNames('react-swiper2',className) }>
         <div className="react-swiper2-wrapper">{children}</div>
         { dot && <div className="react-swiper2-dots">{ this.dots }</div> }
+        { extra }
       </section>
     );
   }
