@@ -88,9 +88,22 @@ export default class extends Component{
   };
 
   render(){
-    const { className, children, dot, extra,...props } = this.props;
+    const {
+      className,
+      children,
+      dot,
+      extra,
+      auto,
+      touchAngle,
+      continuous,
+      refs,
+      disableScroll,
+      stopPropagation,
+      ...props
+    } = this.props;
+
     return (
-      <section ref="root" className={ classNames('react-swiper2',className) }>
+      <section ref="root" className={ classNames('react-swiper2',className) } {...props}>
         <div className="react-swiper2-wrapper">{children}</div>
         { dot && <div className="react-swiper2-dots">{ this.dots }</div> }
         { extra }

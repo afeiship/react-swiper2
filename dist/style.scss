@@ -38,7 +38,7 @@ $react-swiper2-options:(
       display: inline-block;
       width:$dot-size;
       height:$dot-size;
-      border-radius: 10px;
+      border-radius: 100px;
       background: rgba(#FFF,0.2);
       &[data-active=true]{
         background: $dot-color;
