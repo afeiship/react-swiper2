@@ -1,9 +1,13 @@
 $react-swiper2-options:(
-  dot-color: #fff
+  dot-color: #fff,
+  dot-size: 10px,
+  dot-gap: 5px,
 )!default;
 
 .react-swiper2{
   $dot-color: map-get($map: $react-swiper2-options, $key: dot-color);
+  $dot-size: map-get($map: $react-swiper2-options, $key: dot-size);
+  $dot-gap: map-get($map: $react-swiper2-options, $key: dot-gap);
 
   overflow: hidden;
   visibility: hidden;
@@ -27,13 +31,13 @@ $react-swiper2-options:(
     -webkit-transform: translate3d(-50%,0,0);
     position: absolute;
     bottom:10px;
-    z-index:2;
+    z-index:1;
     text-align: center;
     >span{
-      margin:0 5px;
+      margin-left:$dot-gap;
       display: inline-block;
-      width:10px;
-      height:10px;
+      width:$dot-size;
+      height:$dot-size;
       border-radius: 10px;
       background: rgba(#FFF,0.2);
       &[data-active=true]{
