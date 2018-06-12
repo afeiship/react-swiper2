@@ -50,9 +50,7 @@ export default class extends Component{
     const { children } = this.props;
     const { value } = this.state;
     const items = NxRange.integer( 0, children.length );
-    return items.map(i=>{
-      return <span key={i} data-active={value == i} />
-    });
+    return items.map(i => <span key={i} data-active={value == i} />);
   }
 
   componentDidMount() {
