@@ -83,13 +83,13 @@
     "npm": ">= 3.0.0"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
+    "classnames": "*",
     "next-range": "github:afeiship/next-range",
     "noop": "github:afeiship/noop",
-    "object-assign": "^4.1.1",
-    "prop-types": "^15.5.10",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
+    "object-assign": "*",
+    "prop-types": "*",
+    "react": "*",
+    "react-dom": "*",
     "swiper": "github:afeiship/swiper"
   }
 }
