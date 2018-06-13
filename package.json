@@ -87,9 +87,9 @@
     "next-range": "github:afeiship/next-range",
     "noop": "github:afeiship/noop",
     "object-assign": "*",
-    "prop-types": "*",
-    "react": "*",
-    "react-dom": "*",
+    "prop-types": "^15.6.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "swiper": "github:afeiship/swiper"
   }
 }

@@ -1,4 +1,4 @@
-import React,{ Component } from 'react';
+import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import Swiper from 'swiper';
@@ -8,66 +8,65 @@ import objectAssign from 'object-assign';
 import NxRange from 'next-range';
 
 
-export default class extends Component{
+export default class extends Component {
   /*===properties start===*/
   static propTypes = {
-    className : PropTypes.string,
-    value : PropTypes.number,
-    speed : PropTypes.number,
-    touchAngle : PropTypes.number,
-    auto : PropTypes.number,
-    dot : PropTypes.bool,
-    continuous : PropTypes.bool,
-    disableScroll : PropTypes.bool,
-    stopPropagation : PropTypes.bool,
-    onChange : PropTypes.func,
-    onTransitionEnd : PropTypes.func,
-    extra : PropTypes.element,
+    className: PropTypes.string,
+    value: PropTypes.number,
+    speed: PropTypes.number,
+    touchAngle: PropTypes.number,
+    auto: PropTypes.number,
+    dot: PropTypes.bool,
+    continuous: PropTypes.bool,
+    disableScroll: PropTypes.bool,
+    stopPropagation: PropTypes.bool,
+    onChange: PropTypes.func,
+    onTransitionEnd: PropTypes.func,
+    extra: PropTypes.element,
   };
 
   static defaultProps = {
-    value : 0,
-    speed : 400,
-    touchAngle : 45,
-    auto : 0,
-    dot : true,
-    continuous : true,
-    disableScroll : false,
-    stopPropagation : false,
-    onChange : noop,
-    onTransitionEnd : noop
+    value: 0,
+    speed: 400,
+    touchAngle: 45,
+    auto: 0,
+    dot: true,
+    continuous: true,
+    disableScroll: false,
+    stopPropagation: false,
+    onChange: noop,
+    onTransitionEnd: noop
   };
   /*===properties end===*/
 
-  constructor(inProps){
+  constructor(inProps) {
     super(inProps);
     this.state = {
       value: inProps.value
     };
   }
 
-  get dots(){
+  get dots() {
     const { children } = this.props;
     const { value } = this.state;
-    const items = NxRange.integer( 0, children.length );
+    const items = NxRange.integer(0, children.length);
     return items.map(i => <span key={i} data-active={value == i} />);
   }
 
   componentDidMount() {
-    const { root } = this.refs;
     const { className, onTransitionEnd, ...options } = this.props;
     const { value } = this.state;
-    const swiperOptions = objectAssign( options, {
+    const swiperOptions = objectAssign(options, {
       callback: this._onChange,
       transitionEnd: onTransitionEnd,
       startSlide: value
     });
-    this.swiper = Swiper(root,swiperOptions);
+    this.swiper = Swiper(this.root, swiperOptions);
   }
 
-  componentWillReceiveProps(inProps){
+  componentWillReceiveProps(inProps) {
     const { value } = inProps;
-    if( value !== this.state.value ){
+    if (value !== this.state.value) {
       this.setState({ value });
     }
   }
@@ -77,15 +76,15 @@ export default class extends Component{
     this.swiper = null;
   }
 
-  _onChange = (value) =>{
+  _onChange = (value) => {
     const { onChange } = this.props;
     const target = { value };
-    this.setState(target,()=>{
+    this.setState(target, () => {
       onChange({ target });
     });
   };
 
-  render(){
+  render() {
     const {
       className,
       children,
@@ -101,10 +100,10 @@ export default class extends Component{
     } = this.props;
 
     return (
-      <section ref="root" className={ classNames('react-swiper2',className) } {...props}>
+      <section ref={(root) => { this.root = root }} className={classNames('react-swiper2', className)} {...props}>
         <div className="react-swiper2-wrapper">{children}</div>
-        { dot && <div className="react-swiper2-dots">{ this.dots }</div> }
-        { extra }
+        {dot && <div className="react-swiper2-dots">{this.dots}</div>}
+        {extra}
       </section>
     );
   }
