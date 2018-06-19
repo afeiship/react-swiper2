@@ -16,6 +16,7 @@ $react-swiper2-options:(
   &-wrapper{
     overflow: hidden;
     position: relative;
+    height: 100%;
     >*{
       float:left;
       width:100%;
